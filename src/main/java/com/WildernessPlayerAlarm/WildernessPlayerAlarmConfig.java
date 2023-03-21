@@ -43,13 +43,24 @@ public interface WildernessPlayerAlarmConfig extends Config
 	{
 		return true;
 	}
+	
+		@ConfigItem(
+			keyName = "overlayOverride",
+			name = "Override overlay with notification",
+			description = "Replaces the overlay with a standard notification",
+			position = 3
+	)
+	default boolean overlayOverride()
+	{
+		return true;
+	}
 
 	@Alpha
 	@ConfigItem(
 			keyName = "flashColor",
 			name = "Flash color",
 			description = "Sets the color of the alarm flashes",
-			position = 3
+			position = 4
 	)
 	default Color flashColor()
 	{
