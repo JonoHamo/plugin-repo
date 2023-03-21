@@ -34,6 +34,9 @@ public class WildernessPlayerAlarmPlugin extends Plugin
 	@Inject
 	private AlarmOverlay overlay;
 
+	@Inject
+    private Notifier notifier;
+	
 	private boolean overlayOn = false;
 
 	@Subscribe
@@ -61,31 +64,31 @@ public class WildernessPlayerAlarmPlugin extends Plugin
 			}
 		}
 
-	if (overlayOverride)
+		if (config.overlayOverride())
 	{
 	
-		if(shouldAlarm)
-		{
-		notifier.notify("A player has appeared!")		
-		}
+			if	(shouldAlarm)
+			{
+				notifier.notify("A player has appeared!")		
+			}
 	
 	
 	}
 	
-	if(!overlayOverride)
-	{
-		if (shouldAlarm && !overlayOn)
+		else
 		{
-			overlayOn = true;
-			overlayManager.add(overlay);
+			if (shouldAlarm && !overlayOn)
+			{
+				overlayOn = true;
+				overlayManager.add(overlay);
+			}
+			if (!shouldAlarm)
+			{
+				overlayOn = false;
+				overlayManager.remove(overlay);
+			}
+			}
 		}
-		if (!shouldAlarm)
-		{
-			overlayOn = false;
-			overlayManager.remove(overlay);
-		}
-		}
-	}
 
 	@Override
 	protected void shutDown() throws Exception
