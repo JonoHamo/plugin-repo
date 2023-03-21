@@ -35,7 +35,7 @@ public class WildernessPlayerAlarmPlugin extends Plugin
 	private AlarmOverlay overlay;
 
 	@Inject
-    private Notifier notifier;
+	private Notifier notifier;
 	
 	private boolean overlayOn = false;
 
